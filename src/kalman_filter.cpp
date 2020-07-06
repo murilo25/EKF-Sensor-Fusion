@@ -56,18 +56,16 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
    */
 	
     VectorXd z_pred;
-	VectorXd y = z - z_pred;
-	MatrixXd H_j;
 	
 	float Px2 = x_[0]*x_[0];
 	float Py2 = x_[1]*x_[1];
 	z_pred[0] = sqrt(Px2 + Py2);
-	z_pred[1] = atan2(x_[1]/x_[0]);
+	z_pred[1] = atan2(x_[1],x_[0]);
 	z_pred[2] = (x_[0]*x_[2] + x_[1]*x_[3])/(sqrt(Px2 + Py2));
+
+    VectorXd y = z - z_pred;
 	
-	H_j = tools.CalculateJacobian(x_)
-	
-    MatrixXd Ht = H_j.transpose();
+    MatrixXd Ht = H_.transpose();
     MatrixXd S = H_ * P_ * Ht + R_;
     MatrixXd Si = S.inverse();
     MatrixXd PHt = P_ * Ht;
