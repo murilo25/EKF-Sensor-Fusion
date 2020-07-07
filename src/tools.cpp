@@ -9,9 +9,14 @@ Tools::Tools() {}
 
 Tools::~Tools() {}
 
-VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
-    VectorXd diff,res;
+VectorXd Tools::CalculateRMSE(const vector<VectorXd>& estimations, const vector<VectorXd>& ground_truth){
+
+    VectorXd diff;
+    VectorXd res;
+
+    diff << 0, 0, 0, 0;
     res << 0, 0, 0, 0;
+
     for (int i = 0; i < estimations.size(); i++)
     {
         diff = estimations[i] - ground_truth[i];
