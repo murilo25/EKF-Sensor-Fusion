@@ -48,8 +48,8 @@ class FusionEKF {
   Eigen::MatrixXd F_;
   Eigen::MatrixXd P_;
   Eigen::VectorXd x_;
-  Eigen::VectorXd z_laser;
-  Eigen::VectorXd z_radar;
+  Eigen::VectorXd z_laser_;
+  Eigen::VectorXd z_radar_;
 
   float process_noise_ax;
   float process_noise_ay;
