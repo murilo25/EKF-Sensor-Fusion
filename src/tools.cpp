@@ -11,20 +11,22 @@ Tools::~Tools() {}
 
 VectorXd Tools::CalculateRMSE(const vector<VectorXd>& estimations, const vector<VectorXd>& ground_truth){
 
-    VectorXd diff;
     VectorXd res;
+    rmse << 0, 0, 0, 0;
 
-    diff << 0, 0, 0, 0;
-    res << 0, 0, 0, 0;
+    if (estimations.size() != ground_truth.size() || estimations.size() == 0) {
+        cout << "Invalid estimation or ground_truth data" << endl;
+        return rmse;
+    }
 
     for (int i = 0; i < estimations.size(); i++)
     {
-        diff = estimations[i] - ground_truth[i];
-        res += pow(diff, 2);
+        VectorXd diff = estimations[i] - ground_truth[i];
+        rmse+=diff.array()* diff.array();   //term by term multiplication
     }
-    res = sqrt(res / estimations.size());
-
-    return res;
+    rmse = rmse / estimations.size();
+    rmse = rmse.array().sqrt();
+    return rmse;
 }
 
 MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
