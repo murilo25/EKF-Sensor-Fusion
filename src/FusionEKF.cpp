@@ -129,7 +129,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       0, ((dt * dt * dt) / 2.0)* process_noise_ay, 0, dt* dt* process_noise_ay;
 
   // check if R and H are for radar or laser: does not matter for prediction
-  ekf_.Init(x_, P_, F_, H_laser_, R_laser_, Q_)
+  ekf_.Init(x_, P_, F_, H_laser_, R_laser_, Q_);
 
 
   ekf_.Predict();
