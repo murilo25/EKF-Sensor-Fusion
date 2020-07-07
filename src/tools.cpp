@@ -22,7 +22,8 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd>& estimations, const vector<
     for (int i = 0; i < estimations.size(); i++)
     {
         VectorXd diff = estimations[i] - ground_truth[i];
-        rmse += diff.array() * diff.array();   //term by term multiplication
+        diff = diff.array() * diff.array();   //term by term multiplication
+        rmse += diff;
     }
     rmse = rmse / estimations.size();
     rmse = rmse.array().sqrt();
