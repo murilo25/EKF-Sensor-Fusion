@@ -139,7 +139,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     * - Use the sensor type to perform the update step.
     * - Update the state and covariance matrices.
     */
-    std::cout << "Predict ok\n";
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
         // update H and R
         std::cout << "UpdateEKF...\n";
