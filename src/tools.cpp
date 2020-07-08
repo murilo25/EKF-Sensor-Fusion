@@ -18,13 +18,14 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd>& estimations, const vector<
         std::cout << "Invalid estimation or ground_truth data" << std::endl;
         return rmse;
     }
-
+    std::cout << "RMSE 1\n";
     for (int i = 0; i < estimations.size(); i++)
     {
         VectorXd diff = estimations[i] - ground_truth[i];
         diff = diff.array() * diff.array();   //term by term multiplication
         rmse += diff;
     }
+    std::cout << "RMSE 2\n";
     rmse = rmse / estimations.size();
     rmse = rmse.array().sqrt();
     return rmse;
