@@ -60,7 +60,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     float z_pred0, z_pred1, z_pred2;
 
     VectorXd z_pred;
-    z_pred = VectorXd(3)
+    z_pred = VectorXd(3);
 
     std::cout << "KF 1\n";
     float Px2 = x_(0)* x_(0);
@@ -84,7 +84,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     }
     
     std::cout << "KF 3\n";
-	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/z_pred0);
+	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/z_pred0;
 
     z_pred << z_pred0,
               z_pred1,
