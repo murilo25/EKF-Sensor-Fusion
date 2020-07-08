@@ -59,8 +59,8 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 	
     VectorXd z_pred;
     std::cout << "KF 1\n";
-	float Px2 = x_(0)*x_(0);
-	float Py2 = x_(1)*x_(1);
+    float Px2 = 1.0;// x_(0)* x_(0);
+	float Py2 = 1.0;// x_(1)* x_(1);
 	z_pred(0) = sqrt(Px2 + Py2);
     std::cout << "KF 1.5\n";
     if ( abs(x_(0)) < 0.001 )
