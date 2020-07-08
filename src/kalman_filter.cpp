@@ -59,26 +59,26 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 	
     VectorXd z_pred;
     std::cout << "KF 1\n";
-	float Px2 = x_[0]*x_[0];
-	float Py2 = x_[1]*x_[1];
+	float Px2 = x_(0)*x_(0);
+	float Py2 = x_(1)*x_(1);
 	z_pred[0] = sqrt(Px2 + Py2);
     std::cout << "KF 1.5\n";
-    if ( abs(x_[0]) < 0.001 )
-        x_[0] = 0.01;
-	z_pred[1] = atan2(x_[1],x_[0]);
+    if ( abs(x_(0)) < 0.001 )
+        x_(0) = 0.01;
+	z_pred(1) = atan2(x_(1),x_(0));
     std::cout << "KF 2\n";
-    if ( z_pred[1] > 0 ) {
-        while ( z_pred[1] > (M_PI/2) ) {
-            z_pred[1] -= M_PI;
+    if ( z_pred(1) > 0 ) {
+        while ( z_pred(1) > (M_PI/2) ) {
+            z_pred(1) -= M_PI;
         }
     }
     else {
-        while ( z_pred[1] < (-M_PI / 2) ) {
-            z_pred[1] += M_PI;
+        while ( z_pred(1) < (-M_PI / 2) ) {
+            z_pred(1) += M_PI;
         }
     }
     std::cout << "KF 3\n";
-	z_pred[2] = (x_[0]*x_[2] + x_[1]*x_[3])/(sqrt(Px2 + Py2));
+	z_pred(2) = (x_(0)*x_(2) + x_(1)*x_(3))/(sqrt(Px2 + Py2));
 
     VectorXd y = z - z_pred;
     std::cout << "KF 4\n";
