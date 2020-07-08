@@ -71,13 +71,14 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     */
     if (!is_initialized_) {
         // initialize states with first measurement
+        std::cout << "Initialize states...\n";
         if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
             // Initialize state given radar measurements ( range (rho), bearing (phi), range rate )
             // Convert radar from polar to cartesian coordinates and initialize state.
             // radar polar coordinates: (rho, phi) 
             // cartesian coordinates: (x , y)
             // polar to cartesian -> x = rho*cos(phi) ; y = rho*sin(phi)
-
+            std::cout << "Initialize radar...\n";
             x_ << measurement_pack.raw_measurements_[0] * cos(measurement_pack.raw_measurements_[1]),
                   measurement_pack.raw_measurements_[0] * sin(measurement_pack.raw_measurements_[1]) ,
                   0,
@@ -87,6 +88,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         }
         else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
             // Initialize state given laser measurements (x,y)
+            std::cout << "Initialize laser...\n";
 
             x_ << measurement_pack.raw_measurements_[0],
                     measurement_pack.raw_measurements_[1],
@@ -98,6 +100,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
         // done initializing, no need to predict or update
         is_initialized_ = true;
+        std::cout << "Initialize states OK\n";
         return;
     }
 
