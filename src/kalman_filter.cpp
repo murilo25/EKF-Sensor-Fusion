@@ -57,28 +57,39 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
    * TODO: update the state by using Extended Kalman Filter equations
    */
 	
+    float z_pred0, z_pred1, z_pred2;
+
     VectorXd z_pred;
+    z_pred = VectorXd(3)
+
     std::cout << "KF 1\n";
-    float Px2 = 1.0;// x_(0)* x_(0);
-	float Py2 = 1.0;// x_(1)* x_(1);
-	z_pred(0) = sqrt(Px2 + Py2);
+    float Px2 = x_(0)* x_(0);
+	float Py2 = x_(1)* x_(1);
+	z_pred0 = sqrt(Px2 + Py2);
+
     std::cout << "KF 1.5\n";
     if ( abs(x_(0)) < 0.001 )
         x_(0) = 0.01;
-	z_pred(1) = atan2(x_(1),x_(0));
+	z_pred1 = atan2(x_(1),x_(0));
     std::cout << "KF 2\n";
-    if ( z_pred(1) > 0 ) {
-        while ( z_pred(1) > (M_PI/2) ) {
-            z_pred(1) -= M_PI;
+    if ( z_pred1 > 0 ) {
+        while ( z_pred1 > (M_PI/2) ) {
+            z_pred1 -= M_PI;
         }
     }
     else {
-        while ( z_pred(1) < (-M_PI / 2) ) {
-            z_pred(1) += M_PI;
+        while ( z_pred1 < (-M_PI / 2) ) {
+            z_pred1 += M_PI;
         }
     }
+    
     std::cout << "KF 3\n";
-	z_pred(2) = (x_(0)*x_(2) + x_(1)*x_(3))/(sqrt(Px2 + Py2));
+	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/z_pred0);
+
+    z_pred << z_pred0,
+              z_pred1,
+              z_pred2;
+
 
     VectorXd y = z - z_pred;
     std::cout << "KF 4\n";
