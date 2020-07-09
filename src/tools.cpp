@@ -21,10 +21,11 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd>& estimations, const vector<
         return rmse;
     }
     std::cout << "RMSE 1\n";
+    std::cout << estimations[0].size();
     for (int i = 0; i < estimations.size(); i++)
     {
         std::cout << "RMSE 1.1\n";
-        VectorXd diff = estimations(i) - ground_truth(i);
+        VectorXd diff = estimations[i] - ground_truth[i];
         std::cout << "RMSE 1.2\n";
         diff = diff.array() * diff.array();   //term by term multiplication
         std::cout << "RMSE 1.3\n";
