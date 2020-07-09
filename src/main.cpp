@@ -29,7 +29,7 @@ string hasData(string s) {
   return "";
 }
 
-std::ostream& operator<<(std::ostream& os, FusionEKF const& m) {
+std::ostream& operator<<(std::ostream& os, const FusionEKF& m) {
     return os << m.ekf_;
 }
 
