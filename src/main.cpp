@@ -121,27 +121,26 @@ int main() {
           VectorXd estimate(4);
           std::cout << "test point 1\n";
 
-          std::cout << fusionEKF.ekf_.x_;
-          std::cout << "test po\n";
-          double p_x = fusionEKF.ekf_.x_;
+          std::cout << "fusionEKF.ekf_.x_ rows: "<<fusionEKF.ekf_.x_.rows() << "fusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
+          /*/
+          double p_x = fusionEKF.ekf_.x_(0);
           std::cout << "test point 1_0\n";
-          double p_y = fusionEKF.ekf_.x_;
+          double p_y = fusionEKF.ekf_.x_(1);
           std::cout << "test point 1_1\n";
-          double v1 = fusionEKF.ekf_.x_;
+          double v1 = fusionEKF.ekf_.x_(2);
           std::cout << "test point 1_2\n";
-          double v2 = fusionEKF.ekf_.x_;
+          double v2 = fusionEKF.ekf_.x_(3);
           std::cout << "test point 2\n";
+          */
           
-          estimate(0) = p_x;
-          estimate(1) = p_y;
-          estimate(2) = v1;
-          estimate(3) = v2;
-            
-          std::cout << fusionEKF.ekf_.x_.rows() << "\n" << fusionEKF.ekf_.x_.cols() << "\n";
-          //estimate = fusionEKF.ekf_.x_;
+          estimate(0) = 1;// p_x;
+          estimate(1) = 1;//p_y;
+          estimate(2) = 1;//v1;
+          estimate(3) = 1;//v2;
 
           estimations.push_back(estimate);
           std::cout << "Calculate RMSE...\n";
+          std::cout << "estimate size: " << estimations[0].size() << "ground_truth size: " << ground_truth[0].size() << std::endl;
           VectorXd RMSE = tools.CalculateRMSE(estimations, ground_truth);
           std::cout << "Calculate RMSE OK\n";
           json msgJson;
