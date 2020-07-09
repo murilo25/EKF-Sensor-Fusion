@@ -22,6 +22,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd>& estimations, const vector<
     }
     std::cout << "RMSE 1\n";
     std::cout << estimations[0].size();
+    std::cout << ground_truth[0].size();
     for (int i = 0; i < estimations.size(); i++)
     {
         std::cout << "RMSE 1.1\n";

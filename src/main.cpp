@@ -136,7 +136,11 @@ int main() {
           //estimate(2) = v1;
           //estimate(3) = v2;
             
-          estimate = fusionEKF.ekf_.x_;
+          //estimate = fusionEKF.ekf_.x_;
+          estimate << fusionEKF.ekf_.x_(0),
+              fusionEKF.ekf_.x_(1),
+              fusionEKF.ekf_.x_(2),
+              fusionEKF.ekf_.x_(3);
 
           estimations.push_back(estimate);
           std::cout << "Calculate RMSE...\n";
