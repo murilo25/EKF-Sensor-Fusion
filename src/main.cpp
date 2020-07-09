@@ -133,10 +133,15 @@ int main() {
           std::cout << "test point 2\n";
           */
           
-          estimate(0) = 1;// p_x;
-          estimate(1) = 1;//p_y;
-          estimate(2) = 1;//v1;
-          estimate(3) = 1;//v2;
+          double p_x = 1;
+          double p_y = 1;
+          double v1 = 1;
+          double v2 = 1;
+
+          estimate(0) = p_x;
+          estimate(1) = p_y;
+          estimate(2) = v1;
+          estimate(3) = v2;
 
           estimations.push_back(estimate);
           std::cout << "Calculate RMSE...\n";
