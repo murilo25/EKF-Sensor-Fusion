@@ -118,10 +118,10 @@ int main() {
           std::cout << "test point 1\n";
           std::cout << fusionEKF.ekf_.x_(0);
           std::cout << "test point 1.5\n";
-          //double p_x = fusionEKF.ekf_.x_(0);
-          //double p_y = fusionEKF.ekf_.x_(1);
-          //double v1 = fusionEKF.ekf_.x_(2);
-          //double v2 = fusionEKF.ekf_.x_(3);
+          double p_x = 1;// fusionEKF.ekf_.x_(0);
+          double p_y = 1;//fusionEKF.ekf_.x_(1);
+          double v1 = 1;//fusionEKF.ekf_.x_(2);
+          double v2 = 1;//fusionEKF.ekf_.x_(3);
           std::cout << "test point 2\n";
           estimate(0) = fusionEKF.ekf_.x_(0);// p_x;
           estimate(1) = fusionEKF.ekf_.x_(1);//p_y;
