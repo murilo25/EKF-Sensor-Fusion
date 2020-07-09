@@ -29,9 +29,9 @@ string hasData(string s) {
   return "";
 }
 
-std::ostream& operator<<(std::ostream& os, const FusionEKF& m) {
-    return os << m.ekf_;
-}
+//std::ostream& operator<<(std::ostream &os, FusionEKF const &m) {
+//    return os << m.ekf_;
+//}
 
 int main() {
   uWS::Hub h;
@@ -120,17 +120,18 @@ int main() {
 
           VectorXd estimate(4);
           std::cout << "test point 1\n";
-          std::cout << fusionEKF.ekf_;
-          std::cout << "test point 1.5\n";
-          double p_x = 1;// fusionEKF.ekf_.x_(0);
-          double p_y = 1;//fusionEKF.ekf_.x_(1);
-          double v1 = 1;//fusionEKF.ekf_.x_(2);
-          double v2 = 1;//fusionEKF.ekf_.x_(3);
+          double p_x = fusionEKF.ekf_.x_(0);
+          std::cout << "test point 1_0\n";
+          double p_y = fusionEKF.ekf_.x_(1);
+          std::cout << "test point 1_1\n";
+          double v1 = fusionEKF.ekf_.x_(2);
+          std::cout << "test point 1_2\n";
+          double v2 = fusionEKF.ekf_.x_(3);
           std::cout << "test point 2\n";
-          estimate(0) = fusionEKF.ekf_.x_(0);// p_x;
-          estimate(1) = fusionEKF.ekf_.x_(1);//p_y;
-          estimate(2) = fusionEKF.ekf_.x_(2);//v1;
-          estimate(3) = fusionEKF.ekf_.x_(3);//v2;
+          estimate(0) = p_x;
+          estimate(1) = p_y;
+          estimate(2) = v1;
+          estimate(3) = v2;
         
           estimations.push_back(estimate);
           std::cout << "Calculate RMSE...\n";
