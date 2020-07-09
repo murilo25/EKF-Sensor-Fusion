@@ -116,6 +116,7 @@ int main() {
 
           VectorXd estimate(4);
           std::cout << "test point 1\n";
+          std::cout << fusionEKF.ekf_ << "\n";
           double p_x = fusionEKF.ekf_.x_(0);
           double p_y = fusionEKF.ekf_.x_(1);
           double v1 = fusionEKF.ekf_.x_(2);
