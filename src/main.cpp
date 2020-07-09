@@ -123,19 +123,21 @@ int main() {
 
           std::cout << fusionEKF.ekf_.x_;
           std::cout << "test po\n";
-          double p_x = fusionEKF.ekf_.x_(0);
+          double p_x = 1;// fusionEKF.ekf_.x_(0);
           std::cout << "test point 1_0\n";
-          double p_y = fusionEKF.ekf_.x_(1);
+          double p_y = 1;// fusionEKF.ekf_.x_(1);
           std::cout << "test point 1_1\n";
-          double v1 = fusionEKF.ekf_.x_(2);
+          //double v1 = fusionEKF.ekf_.x_(2);
           std::cout << "test point 1_2\n";
-          double v2 = fusionEKF.ekf_.x_(3);
+          //double v2 = fusionEKF.ekf_.x_(3);
           std::cout << "test point 2\n";
-          estimate(0) = p_x;
-          estimate(1) = p_y;
-          estimate(2) = v1;
-          estimate(3) = v2;
-        
+          //estimate(0) = p_x;
+          //estimate(1) = p_y;
+          //estimate(2) = v1;
+          //estimate(3) = v2;
+            
+          estimate = fusionEKF.ekf_.x_;
+
           estimations.push_back(estimate);
           std::cout << "Calculate RMSE...\n";
           VectorXd RMSE = tools.CalculateRMSE(estimations, ground_truth);
