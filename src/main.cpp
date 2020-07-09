@@ -29,6 +29,10 @@ string hasData(string s) {
   return "";
 }
 
+std::ostream& operator<<(std::ostream& os, FusionEKF const& m) {
+    return os << m.ekf_;
+}
+
 int main() {
   uWS::Hub h;
 
@@ -116,7 +120,7 @@ int main() {
 
           VectorXd estimate(4);
           std::cout << "test point 1\n";
-          std::cout << fusionEKF.ekf_.x_(0);
+          std::cout << fusionEKF.ekf_;
           std::cout << "test point 1.5\n";
           double p_x = 1;// fusionEKF.ekf_.x_(0);
           double p_y = 1;//fusionEKF.ekf_.x_(1);
