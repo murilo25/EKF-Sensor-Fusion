@@ -41,10 +41,6 @@ int main() {
 
   std::cout << "fusionEKF.ekf_.x_ rows: " << fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
 
-  fusionEKF.ekf_.x_ << 5,
-        5,
-        0,
-        0;
   std::cout << "fusionEKF.ekf_.x_ rows: " << fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
 
 

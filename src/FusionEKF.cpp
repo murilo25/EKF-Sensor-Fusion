@@ -34,6 +34,7 @@ FusionEKF::FusionEKF() {
       0,
       0,
       0;
+  std::cout << "ekf_.x_ rows: " << x_.rows() << "\nekf_.x_ cols: " << x_.cols() << "\n";
 
   // state covariance matrix P
   P_ << 1, 0, 0, 0,
