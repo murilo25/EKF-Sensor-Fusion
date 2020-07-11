@@ -35,7 +35,7 @@ FusionEKF::FusionEKF() {
       0,
       0;
   std::cout << "FusionEKF constructor:\n";
-  std::cout << "ekf_.x_ rows: " << x_.rows() << "\nekf_.x_ cols: " << x_.cols() << "\n";
+  std::cout << "ekf_.x_ rows: " << xf_.rows() << "\nekf_.x_ cols: " << xf_.cols() << "\n";
 
   // state covariance matrix P
   Pf_ << 1, 0, 0, 0,
@@ -158,7 +158,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     //if (0) {    // ignore radar 
         // update H and R
         std::cout << "UpdateEKF...\n";
-        H_radar_ = tools.CalculateJacobian(x_);
+        H_radar_ = tools.CalculateJacobian(xf_);
         z_radar_ << measurement_pack.raw_measurements_[0],
                     measurement_pack.raw_measurements_[1],
                     measurement_pack.raw_measurements_[2];
