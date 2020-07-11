@@ -113,7 +113,7 @@ int main() {
 
 
 
-          fusion.ekf_.x_ << 0,
+          fusionEKF.ekf_.x_ << 0,
               0,
               0,
               0;
