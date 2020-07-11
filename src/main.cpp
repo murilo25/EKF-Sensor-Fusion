@@ -118,10 +118,12 @@ int main() {
           // Push the current estimated x,y positon from the Kalman filter's 
           //   state vector
 
+          /*
           fusionEKF.ekf_.x_ << 5,
               5,
               0,
               0;
+           */
 
           VectorXd estimate(4);
           std::cout << "test point 1\n";
@@ -129,10 +131,10 @@ int main() {
           std::cout << "fusionEKF.ekf_.x_ rows: "<<fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
           
           
-          double p_x = 1;
-          double p_y = 1;
-          double v1 = 1;
-          double v2 = 1;
+          double p_x = 5;
+          double p_y = 5;
+          double v1 = 0;
+          double v2 = 0;
 
           /*
           std::cout << "\np_x: " << p_x;
@@ -142,7 +144,7 @@ int main() {
           */
 
 
-          
+          /*
           p_x = fusionEKF.ekf_.x_(0);
           std::cout << "test point 1_0\n";
           p_y = fusionEKF.ekf_.x_(1);
@@ -151,6 +153,7 @@ int main() {
           std::cout << "test point 1_2\n";
           v2 = fusionEKF.ekf_.x_(3);
           std::cout << "test point 2\n";
+          */
           
           /*
           std::cout << "\np_x: " << p_x;
