@@ -64,6 +64,8 @@ FusionEKF::FusionEKF() {
   // set the acceleration noise components
   process_noise_ax = 9;
   process_noise_ay = 9;
+
+  ekf_.Init(xf_, Pf_, Ff_, H_radar_, R_radar_, Qf_);
 }
 
   /**
