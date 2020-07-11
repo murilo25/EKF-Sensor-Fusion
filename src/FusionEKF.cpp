@@ -43,6 +43,12 @@ FusionEKF::FusionEKF() {
       0, 0, 1000, 0,
       0, 0, 0, 1000;
 
+  // state covariance matrix Q
+  ekf_.Q_ << 0, 0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0;
+
   //measurement covariance matrix - laser
   R_laser_ << 0.0225, 0,
               0, 0.0225;
