@@ -22,11 +22,11 @@ FusionEKF::FusionEKF() {
   R_radar_ = MatrixXd(3, 3);
   H_laser_ = MatrixXd(2, 4);
   H_radar_ = MatrixXd(3, 4);
-  ekf_.x_ = VectorXd(4);
+  x_ = VectorXd(4);
   std::cout << "Test\n";
-  ekf_.Q_ = MatrixXd(4, 4);
-  ekf_.F_ = MatrixXd(4, 4);
-  ekf_.P_ = MatrixXd(4, 4);
+  Q_ = MatrixXd(4, 4);
+  F_ = MatrixXd(4, 4);
+  P_ = MatrixXd(4, 4);
   z_radar_ = VectorXd(3);
   z_laser_ = VectorXd(2);
 
@@ -38,13 +38,13 @@ FusionEKF::FusionEKF() {
   std::cout << "ekf_.x_ rows: " << x_.rows() << "\nekf_.x_ cols: " << x_.cols() << "\n";
 
   // state covariance matrix P
-  ekf_.P_ << 1, 0, 0, 0,
+  P_ << 1, 0, 0, 0,
       0, 1, 0, 0,
       0, 0, 1000, 0,
       0, 0, 0, 1000;
 
   // state covariance matrix Q
-  ekf_.Q_ << 0, 0, 0, 0,
+  Q_ << 0, 0, 0, 0,
       0, 0, 0, 0,
       0, 0, 0, 0,
       0, 0, 0, 0;
