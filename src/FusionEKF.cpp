@@ -22,6 +22,7 @@ FusionEKF::FusionEKF() {
   R_radar_ = MatrixXd(3, 3);
   H_laser_ = MatrixXd(2, 4);
   H_radar_ = MatrixXd(3, 4);
+  std::cout << "Test\n";
   ekf_.Q_ = MatrixXd(4, 4);
   ekf_.x_ = VectorXd(4);
   ekf_.F_ = MatrixXd(4, 4);
