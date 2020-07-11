@@ -22,15 +22,15 @@ FusionEKF::FusionEKF() {
   R_radar_ = MatrixXd(3, 3);
   H_laser_ = MatrixXd(2, 4);
   H_radar_ = MatrixXd(3, 4);
-  x_ = VectorXd(4);
+  xf_ = VectorXd(4);
   std::cout << "Test\n";
-  Q_ = MatrixXd(4, 4);
-  F_ = MatrixXd(4, 4);
-  P_ = MatrixXd(4, 4);
+  Qf_ = MatrixXd(4, 4);
+  Ff_ = MatrixXd(4, 4);
+  Pf_ = MatrixXd(4, 4);
   z_radar_ = VectorXd(3);
   z_laser_ = VectorXd(2);
 
-  x_ << 0,
+  xf_ << 0,
       0,
       0,
       0;
@@ -38,13 +38,13 @@ FusionEKF::FusionEKF() {
   std::cout << "ekf_.x_ rows: " << x_.rows() << "\nekf_.x_ cols: " << x_.cols() << "\n";
 
   // state covariance matrix P
-  P_ << 1, 0, 0, 0,
+  Pf_ << 1, 0, 0, 0,
       0, 1, 0, 0,
       0, 0, 1000, 0,
       0, 0, 0, 1000;
 
   // state covariance matrix Q
-  Q_ << 0, 0, 0, 0,
+  Qf_ << 0, 0, 0, 0,
       0, 0, 0, 0,
       0, 0, 0, 0,
       0, 0, 0, 0;
@@ -93,7 +93,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
             // cartesian coordinates: (x , y)
             // polar to cartesian -> x = rho*cos(phi) ; y = rho*sin(phi)
             std::cout << "Initialize radar...\n";
-            x_ << measurement_pack.raw_measurements_[0] * cos(measurement_pack.raw_measurements_[1]),
+            xf_ << measurement_pack.raw_measurements_[0] * cos(measurement_pack.raw_measurements_[1]),
                   measurement_pack.raw_measurements_[0] * sin(measurement_pack.raw_measurements_[1]) ,
                   0,
                   0;
@@ -104,7 +104,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
             // Initialize state given laser measurements (x,y)
             std::cout << "Initialize laser...\n";
 
-            x_ << measurement_pack.raw_measurements_[0],
+            xf_ << measurement_pack.raw_measurements_[0],
                     measurement_pack.raw_measurements_[1],
                     0,
                     0;
@@ -126,19 +126,19 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     previous_timestamp_ = measurement_pack.timestamp_;
 
     // Computre new F matrix given delta time elapsed between measurements
-    F_ << 1, 0, dt, 0,
+    Ff_ << 1, 0, dt, 0,
           0, 1, 0, dt,
           0, 0, 1, 0,
           0, 0, 0, 1;
 
     // 2. Set the process covariance matrix Q
-    Q_ << ((dt * dt * dt * dt) / 4.0) * process_noise_ax, 0, ((dt * dt * dt) / 2.0)* process_noise_ax, 0,
+    Qf_ << ((dt * dt * dt * dt) / 4.0) * process_noise_ax, 0, ((dt * dt * dt) / 2.0)* process_noise_ax, 0,
           0, ((dt * dt * dt * dt) / 4.0)* process_noise_ay, 0, ((dt * dt * dt) / 2.0)* process_noise_ay,
           ((dt * dt * dt) / 2.0)* process_noise_ax, 0, dt* dt* process_noise_ax, 0,
           0, ((dt * dt * dt) / 2.0)* process_noise_ay, 0, dt* dt* process_noise_ay;
 
     // check if R and H are for radar or laser: does not matter for prediction
-    ekf_.Init(x_, P_, F_, H_laser_, R_laser_, Q_);
+    ekf_.Init(xf_, Pf_, Ff_, H_laser_, R_laser_, Qf_);
 
 
     ekf_.Predict();
@@ -162,7 +162,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         z_radar_ << measurement_pack.raw_measurements_[0],
                     measurement_pack.raw_measurements_[1],
                     measurement_pack.raw_measurements_[2];
-        ekf_.Init(x_, P_, F_, H_radar_, R_radar_, Q_);
+        ekf_.Init(xf_, Pf_, Ff_, H_radar_, R_radar_, Qf_);
         ekf_.UpdateEKF(z_radar_);
         std::cout << "UpdateEKF ok\n";
     } else {
@@ -170,7 +170,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         std::cout << "Update...\n";
         z_laser_ << measurement_pack.raw_measurements_[0],
                     measurement_pack.raw_measurements_[1];
-        ekf_.Init(x_, P_, F_, H_laser_, R_laser_, Q_);
+        ekf_.Init(xf_, Pf_, Ff_, H_laser_, R_laser_, Qf_);
         ekf_.Update(z_laser_);
         std::cout << "Update ok\n";
     }

@@ -44,10 +44,10 @@ class FusionEKF {
   Eigen::MatrixXd R_radar_;
   Eigen::MatrixXd H_laser_;
   Eigen::MatrixXd H_radar_;
-  Eigen::MatrixXd Q_;
-  Eigen::MatrixXd F_;
-  Eigen::MatrixXd P_;
-  Eigen::VectorXd x_;
+  Eigen::MatrixXd Qf_;
+  Eigen::MatrixXd Ff_;
+  Eigen::MatrixXd Pf_;
+  Eigen::VectorXd xf_;
   Eigen::VectorXd z_laser_;
   Eigen::VectorXd z_radar_;
 
