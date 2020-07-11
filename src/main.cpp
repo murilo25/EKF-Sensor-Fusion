@@ -110,6 +110,14 @@ int main() {
           gt_values(2) = vx_gt;
           gt_values(3) = vy_gt;
           ground_truth.push_back(gt_values);
+
+
+
+          fusion.ekf_.x_ << 0,
+              0,
+              0,
+              0;
+
           
           // Call ProcessMeasurement(meas_package) for Kalman filter
           std::cout << "Process measurement...\n";
@@ -123,7 +131,7 @@ int main() {
 
           std::cout << "fusionEKF.ekf_.x_ rows: "<<fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
           
-          
+          /*
           double p_x = 1;
           double p_y = 1;
           double v1 = 1;
@@ -133,12 +141,9 @@ int main() {
           std::cout << "\np_y: " << p_y;
           std::cout << "\nv1: " << v1;
           std::cout << "\nv2: " << v2;
-          
+          */
 
-          fusion.ekf_.x_ << 0, 
-                            0, 
-                            0,
-                            0;
+
           
           p_x = fusionEKF.ekf_.x_(0);
           std::cout << "test point 1_0\n";
@@ -149,11 +154,12 @@ int main() {
           v2 = fusionEKF.ekf_.x_(3);
           std::cout << "test point 2\n";
           
+          /*
           std::cout << "\np_x: " << p_x;
           std::cout << "\np_y: " << p_y;
           std::cout << "\nv1: " << v1;
           std::cout << "\nv2: " << v2 << "\n";
-          
+          */
 
 
           estimate(0) = p_x;
