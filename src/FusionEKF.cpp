@@ -29,6 +29,11 @@ FusionEKF::FusionEKF() {
   z_radar_ = VectorXd(3);
   z_laser_ = VectorXd(2);
 
+  x_ << 0,
+      0,
+      0,
+      0;
+
   // state covariance matrix P
   P_ << 1, 0, 0, 0,
       0, 1, 0, 0,
