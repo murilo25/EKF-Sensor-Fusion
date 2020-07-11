@@ -134,7 +134,7 @@ int main() {
           std::cout << "\nv1: " << v1;
           std::cout << "\nv2: " << v2;
           
-          
+          /*
           p_x = fusionEKF.ekf_.x_(0);
           std::cout << "test point 1_0\n";
           p_y = fusionEKF.ekf_.x_(1);
@@ -143,7 +143,7 @@ int main() {
           std::cout << "test point 1_2\n";
           v2 = fusionEKF.ekf_.x_(3);
           std::cout << "test point 2\n";
-          
+          */
           std::cout << "\np_x: " << p_x;
           std::cout << "\np_y: " << p_y;
           std::cout << "\nv1: " << v1;
