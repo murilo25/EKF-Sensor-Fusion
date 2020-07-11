@@ -110,14 +110,6 @@ int main() {
           gt_values(2) = vx_gt;
           gt_values(3) = vy_gt;
           ground_truth.push_back(gt_values);
-
-
-
-          fusionEKF.ekf_.x_ << 0,
-              0,
-              0,
-              0;
-
           
           // Call ProcessMeasurement(meas_package) for Kalman filter
           std::cout << "Process measurement...\n";
@@ -125,6 +117,11 @@ int main() {
           std::cout << "Process measurement OK\n";
           // Push the current estimated x,y positon from the Kalman filter's 
           //   state vector
+
+          fusionEKF.ekf_.x_ << 5,
+              5,
+              0,
+              0;
 
           VectorXd estimate(4);
           std::cout << "test point 1\n";
