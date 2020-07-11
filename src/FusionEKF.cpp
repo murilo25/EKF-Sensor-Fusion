@@ -105,12 +105,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     }
 
 
-    // print the output
-    cout << "x_ = " << ekf_.x_ << endl;
-    cout << "P_ = " << ekf_.P_ << endl;
-
-
-
     /* Prediction */
     std::cout << "Prediction...\n";
     // compute the time elapsed between the current and previous measurements -> dt: expressed in seconds
