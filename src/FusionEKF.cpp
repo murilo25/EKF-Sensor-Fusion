@@ -29,11 +29,11 @@ FusionEKF::FusionEKF() {
   z_radar_ = VectorXd(3);
   z_laser_ = VectorXd(2);
 
-  std::cout << "Test\n";
   x_ << 0,
       0,
       0,
       0;
+  std::cout << "FusionEKF constructor:\n";
   std::cout << "ekf_.x_ rows: " << x_.rows() << "\nekf_.x_ cols: " << x_.cols() << "\n";
 
   // state covariance matrix P

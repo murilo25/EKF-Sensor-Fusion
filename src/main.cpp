@@ -39,10 +39,8 @@ int main() {
   // Create a Kalman Filter instance
   FusionEKF fusionEKF;
 
+  std::cout << "Main:\n";
   std::cout << "fusionEKF.ekf_.x_ rows: " << fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
-
-  std::cout << "fusionEKF.ekf_.x_ rows: " << fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
-
 
   // used to compute the RMSE later
   Tools tools;
