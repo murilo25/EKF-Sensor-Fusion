@@ -131,12 +131,13 @@ int main() {
 
           std::cout << "fusionEKF.ekf_.x_ rows: "<<fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
           
-          /*
+          
           double p_x = 1;
           double p_y = 1;
           double v1 = 1;
           double v2 = 1;
 
+          /*
           std::cout << "\np_x: " << p_x;
           std::cout << "\np_y: " << p_y;
           std::cout << "\nv1: " << v1;
