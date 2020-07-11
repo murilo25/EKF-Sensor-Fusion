@@ -29,6 +29,7 @@ FusionEKF::FusionEKF() {
   z_radar_ = VectorXd(3);
   z_laser_ = VectorXd(2);
 
+  std::cout << "Test\n";
   x_ << 0,
       0,
       0,
