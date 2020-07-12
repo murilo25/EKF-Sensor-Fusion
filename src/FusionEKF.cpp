@@ -175,7 +175,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     }
 
     // print the output
-    std::cout << "Print update: \n";
-    cout << "x_ = " << ekf_.x_ << endl;
-    cout << "P_ = " << ekf_.P_ << endl;
+    if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
+        std::cout << "Print update: \n";
+        cout << "x_ = " << ekf_.x_ << endl;
+        cout << "P_ = " << ekf_.P_ << endl;
+    }
 }
