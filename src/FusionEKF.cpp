@@ -157,7 +157,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     * - Update the state and covariance matrices.
     */
     //if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
-    if (0) {    // ignore radar 
+    if (1) {    // ignore radar 
         // update H and R
         std::cout << "UpdateEKF...\n";
         H_radar_ = tools.CalculateJacobian(xf_);
