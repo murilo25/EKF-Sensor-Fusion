@@ -42,7 +42,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
 
     if (abs(deno) < 0.001) {
         std::cout << "Division by zero during Jacobian calculation\n";
-        return J;
+        //return J;
     }
 
     // calculate jacobian
