@@ -62,16 +62,14 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     VectorXd z_pred;
     z_pred = VectorXd(3);
 
-    std::cout << "KF 1\n";
     float Px2 = x_(0)* x_(0);
 	float Py2 = x_(1)* x_(1);
 	z_pred0 = sqrt(Px2 + Py2);
 
-    std::cout << "KF 1.5\n";
     if ( abs(x_(0)) < 0.001 )
         x_(0) = 0.01;
 	z_pred1 = atan2(x_(1),x_(0));
-    std::cout << "KF 2\n";
+    std::cout << "Angle: " << z_pred1;
     if ( z_pred1 > 0 ) {
         while ( z_pred1 > (M_PI/2) ) {
             z_pred1 -= M_PI;
@@ -83,7 +81,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
         }
     }
     
-    std::cout << "KF 3\n";
+    std::cout << " Truncated angle: " << z_pred1 << "\n";
 	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/z_pred0;
 
     z_pred << z_pred0,
@@ -92,13 +90,13 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
 
     VectorXd y = z - z_pred;
-    std::cout << "KF 4\n";
     MatrixXd Ht = H_.transpose();
     MatrixXd S = H_ * P_ * Ht + R_;
     MatrixXd Si = S.inverse();
     MatrixXd PHt = P_ * Ht;
     MatrixXd K = PHt * Si;
-    std::cout << "KF 5\n";
+
+
     //new estimate
     x_ = x_ + (K * y);
     long x_size = x_.size();
