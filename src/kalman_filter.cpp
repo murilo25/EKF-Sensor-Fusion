@@ -68,14 +68,13 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
     if (abs(x_(0)) < 0.001) {
         std::cout << "Division by zero during UpdateEKF()\n";
-        return J;
     }
 
     //if ( abs(x_(0)) < 0.001 )
     //    x_(0) = 0.01;
     z_pred0 = sqrt(Px2 + Py2);
 	z_pred1 = atan2(x_(1),x_(0));
-	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/std::max(z_pred0,0.001);
+	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/(std::max(z_pred0,0.001));
 
     z_pred << z_pred0,
               z_pred1,
