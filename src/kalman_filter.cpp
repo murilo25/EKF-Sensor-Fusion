@@ -66,8 +66,8 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 	float Py2 = x_(1)* x_(1);
 	z_pred0 = sqrt(Px2 + Py2);
 
-    if ( abs(x_(0)) < 0.001 )
-        x_(0) = 0.01;
+    //if ( abs(x_(0)) < 0.001 )
+    //    x_(0) = 0.01;
 	z_pred1 = atan2(x_(1),x_(0));
     std::cout << "Angle: " << z_pred1;
     while ( z_pred1 > M_PI ) {
