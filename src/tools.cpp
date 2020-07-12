@@ -40,7 +40,10 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
     float deno_sqrt = sqrt(deno);
     float deno_sqrt_cube = deno * deno_sqrt;
 
-
+    if (abs(deno) < 0.001) {
+        std::cout << "Division by zero during Jacobian calculation\n";
+        return J;
+    }
 
     // calculate jacobian
     J << x_state[0] / deno_sqrt, x_state[1] / deno_sqrt, 0, 0,
