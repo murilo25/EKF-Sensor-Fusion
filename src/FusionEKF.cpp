@@ -159,7 +159,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
                     measurement_pack.raw_measurements_[1],
                     measurement_pack.raw_measurements_[2];
         //ekf_.Init(xf_, Pf_, Ff_, H_radar_, R_radar_, Qf_);
-        ekf_.H_ = H_radar;
+        ekf_.H_ = H_radar_;
         ekf_.R_ = R_radar_;
         ekf_.Q_ = Qf_;
         ekf_.F_ = Ff_;
