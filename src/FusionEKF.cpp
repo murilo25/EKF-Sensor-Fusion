@@ -175,7 +175,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         ekf_.Q_ = Qf_;
         ekf_.F_ = Ff_;
         ekf_.Update(z_laser_);
-    */
     }
 
     // print the output
