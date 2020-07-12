@@ -120,9 +120,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         return;
     }
 
-
-    /* Prediction */
-    std::cout << "Prediction...\n";
     // compute the time elapsed between the current and previous measurements -> dt: expressed in seconds
     float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
     previous_timestamp_ = measurement_pack.timestamp_;
@@ -145,8 +142,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
     ekf_.Predict();
 
-    std::cout << "Prediction OK\n";
-
     /**
     * Update
     */
@@ -156,6 +151,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     * - Use the sensor type to perform the update step.
     * - Update the state and covariance matrices.
     */
+    /*
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
     //if (0) {    // ignore radar 
         // update H and R
@@ -168,7 +164,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         ekf_.UpdateEKF(z_radar_);
         std::cout << "UpdateEKF ok\n";
     } 
-    /*else {
+    */
+    //else {
+    if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
         // update H and R
         std::cout << "Update...\n";
         z_laser_ << measurement_pack.raw_measurements_[0],
@@ -177,7 +175,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         ekf_.Update(z_laser_);
         std::cout << "Update ok\n";
     }
-    */
 
     // print the output
     cout << "x_ = " << ekf_.x_ << endl;
