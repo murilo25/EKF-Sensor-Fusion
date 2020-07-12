@@ -75,7 +75,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     //    x_(0) = 0.01;
     z_pred0 = sqrt(Px2 + Py2);
 	z_pred1 = atan2(x_(1),x_(0));
-	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/max(z_pred0,0.001);
+	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/std::max(z_pred0,0.001);
 
     z_pred << z_pred0,
               z_pred1,
