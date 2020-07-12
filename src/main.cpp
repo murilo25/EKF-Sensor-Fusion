@@ -128,36 +128,20 @@ int main() {
           std::cout << "fusionEKF.ekf_.x_ rows: "<<fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
           
           
-          double p_x = 5;
-          double p_y = 5;
-          double v1 = 0;
-          double v2 = 0;
-
-          /*
-          std::cout << "\np_x: " << p_x;
-          std::cout << "\np_y: " << p_y;
-          std::cout << "\nv1: " << v1;
-          std::cout << "\nv2: " << v2;
-          */
-
-
-          
-          p_x = fusionEKF.ekf_.x_(0);
+          double p_x = fusionEKF.ekf_.x_(0);
           std::cout << "test point 1_0\n";
-          p_y = fusionEKF.ekf_.x_(1);
+          bouble p_y = fusionEKF.ekf_.x_(1);
           std::cout << "test point 1_1\n";
-          v1 = fusionEKF.ekf_.x_(2);
+          double v1 = fusionEKF.ekf_.x_(2);
           std::cout << "test point 1_2\n";
-          v2 = fusionEKF.ekf_.x_(3);
+          double v2 = fusionEKF.ekf_.x_(3);
           std::cout << "test point 2\n";
           
           
-          /*
           std::cout << "\np_x: " << p_x;
           std::cout << "\np_y: " << p_y;
           std::cout << "\nv1: " << v1;
           std::cout << "\nv2: " << v2 << "\n";
-          */
 
 
           estimate(0) = p_x;
