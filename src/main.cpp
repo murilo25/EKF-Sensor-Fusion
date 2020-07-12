@@ -136,8 +136,8 @@ int main() {
           std::cout << "\nv2: " << v2 << "\n";
 
 
-          estimate(0) = p_x;
-          estimate(1) = p_y;
+          estimate(0) = 6;// p_x;
+          estimate(1) = 6;//p_y;
           estimate(2) = v1;
           estimate(3) = v2;
 
