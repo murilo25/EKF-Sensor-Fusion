@@ -99,7 +99,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
                   measurement_pack.raw_measurements_[0] * sin(measurement_pack.raw_measurements_[1]) ,
                   0,
                   0;
-
+            ekf_.x_ = xf_;
             previous_timestamp_ = measurement_pack.timestamp_;
         }
         else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
@@ -110,6 +110,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
                     measurement_pack.raw_measurements_[1],
                     0,
                     0;
+            ekf_.x_ = xf_;
 
             previous_timestamp_ = measurement_pack.timestamp_;
         }
