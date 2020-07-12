@@ -32,13 +32,19 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd>& estimations, const vector<
 }
 
 MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
-    float deno = x_state[0] * x_state[0] + x_state[1] * x_state[1];
-    float deno_sqrt = sqrt(deno);
-    float deno_sqrt_cube = pow(deno_sqrt, 3);
+
     MatrixXd J;
     J = MatrixXd(3, 4);
+    // pre-compute terms that appears in the jacobian multiple times
+    float deno = x_state[0] * x_state[0] + x_state[1] * x_state[1];
+    float deno_sqrt = sqrt(deno);
+    float deno_sqrt_cube = deno * deno_sqrt;
+
+
+
+    // calculate jacobian
     J << x_state[0] / deno_sqrt, x_state[1] / deno_sqrt, 0, 0,
-        x_state[1] / deno, x_state[0] / deno, 0, 0,
-        x_state[1] * (x_state[2] * x_state[1] - x_state[3] * x_state[0]) / deno_sqrt_cube, x_state[0] * (x_state[3] * x_state[0] - x_state[2] * x_state[1]) / deno_sqrt_cube, 0, 0;
+        -x_state[1] / deno, x_state[0] / deno, 0, 0,
+        x_state[1] * (x_state[2] * x_state[1] - x_state[3] * x_state[0]) / deno_sqrt_cube, x_state[0] * (x_state[3] * x_state[0] - x_state[2] * x_state[1]) / deno_sqrt_cube, x_state[0]/deno_sqrt, x_state[1] / deno_sqrt;
     return J;
 }
