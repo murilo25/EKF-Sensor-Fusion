@@ -120,22 +120,14 @@ int main() {
           std::cout << "Process measurement OK\n";
           // Push the current estimated x,y positon from the Kalman filter's 
           //   state vector
-
-
           VectorXd estimate(4);
-          std::cout << "test point 1\n";
 
           std::cout << "fusionEKF.ekf_.x_ rows: "<<fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
           
-          
           double p_x = fusionEKF.ekf_.x_(0);
-          std::cout << "test point 1_0\n";
-          bouble p_y = fusionEKF.ekf_.x_(1);
-          std::cout << "test point 1_1\n";
+          double p_y = fusionEKF.ekf_.x_(1);
           double v1 = fusionEKF.ekf_.x_(2);
-          std::cout << "test point 1_2\n";
           double v2 = fusionEKF.ekf_.x_(3);
-          std::cout << "test point 2\n";
           
           
           std::cout << "\np_x: " << p_x;
@@ -150,10 +142,8 @@ int main() {
           estimate(3) = v2;
 
           estimations.push_back(estimate);
-          std::cout << "Calculate RMSE...\n";
           std::cout << "estimate size: " << estimations[0].size() << "\nground_truth size: " << ground_truth[0].size() << std::endl;
           VectorXd RMSE = tools.CalculateRMSE(estimations, ground_truth);
-          std::cout << "Calculate RMSE OK\n";
           json msgJson;
           msgJson["estimate_x"] = p_x;
           msgJson["estimate_y"] = p_y;
