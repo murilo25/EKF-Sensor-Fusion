@@ -39,9 +39,6 @@ int main() {
   // Create a Kalman Filter instance
   FusionEKF fusionEKF;
 
-  std::cout << "Main:\n";
-  std::cout << "fusionEKF.ekf_.x_ rows: " << fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
-
   // used to compute the RMSE later
   Tools tools;
   vector<VectorXd> estimations;
@@ -115,26 +112,15 @@ int main() {
           ground_truth.push_back(gt_values);
           
           // Call ProcessMeasurement(meas_package) for Kalman filter
-          std::cout << "Process measurement...\n";
           fusionEKF.ProcessMeasurement(meas_package);       
-          std::cout << "Process measurement OK\n";
           // Push the current estimated x,y positon from the Kalman filter's 
           //   state vector
           VectorXd estimate(4);
-
-          std::cout << "fusionEKF.ekf_.x_ rows: "<<fusionEKF.ekf_.x_.rows() << "\nfusionEKF.ekf_.x_ cols: " << fusionEKF.ekf_.x_.cols() << "\n";
           
           double p_x = fusionEKF.ekf_.x_(0);
           double p_y = fusionEKF.ekf_.x_(1);
           double v1 = fusionEKF.ekf_.x_(2);
           double v2 = fusionEKF.ekf_.x_(3);
-          
-          
-          std::cout << "\np_x: " << p_x;
-          std::cout << "\np_y: " << p_y;
-          std::cout << "\nv1: " << v1;
-          std::cout << "\nv2: " << v2 << "\n";
-
 
           estimate(0) = p_x;
           estimate(1) = p_y;
