@@ -70,15 +70,11 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
         x_(0) = 0.01;
 	z_pred1 = atan2(x_(1),x_(0));
     std::cout << "Angle: " << z_pred1;
-    if ( z_pred1 > 0 ) {
-        while ( z_pred1 > (M_PI/2) ) {
-            z_pred1 -= M_PI;
-        }
+    while ( z_pred1 > M_PI ) {
+        z_pred1 -= 2 * M_PI;
     }
-    else {
-        while ( z_pred1 < (-M_PI / 2) ) {
-            z_pred1 += M_PI;
-        }
+    while ( z_pred1 < -M_PI ) {
+        z_pred1 += 2 * M_PI;
     }
     
     std::cout << " Truncated angle: " << z_pred1 << "\n";
