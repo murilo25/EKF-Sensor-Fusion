@@ -153,6 +153,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     * - Use the sensor type to perform the update step.
     * - Update the state and covariance matrices.
     */
+
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
         // update H and R
         std::cout << "\nRadar update...\n";
@@ -163,13 +164,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         //ekf_.Init(xf_, Pf_, Ff_, H_radar_, R_radar_, Qf_);
         ekf_.H_ = H_radar_;
         ekf_.R_ = R_radar_;
-        //ekf_.Q_ = Qf_;
-        //ekf_.F_ = Ff_;
-        ekf_.UpdateEKF(z_radar_);
+        //ekf_.UpdateEKF(z_radar_);
     } 
     else {
-    /*
-    //if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
         // update H and R
         std::cout << "Laser Update...\n";
         z_laser_ << measurement_pack.raw_measurements_[0],
@@ -177,10 +174,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         //ekf_.Init(xf_, Pf_, Ff_, H_laser_, R_laser_, Qf_);
         ekf_.H_ = H_laser_;
         ekf_.R_ = R_laser_;
-        //ekf_.Q_ = Qf_;
-        //ekf_.F_ = Ff_;
         ekf_.Update(z_laser_);
-    */
     }
 
     // print the output
