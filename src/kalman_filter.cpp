@@ -25,20 +25,15 @@ void KalmanFilter::Init(VectorXd &x_in, MatrixXd &P_in, MatrixXd &F_in,
 }
 
 void KalmanFilter::Predict() {
-  /**
-   * TODO: predict the state
-   */
     x_ = F_ * x_;
     MatrixXd Ft = F_.transpose();
     P_ = F_ * P_ * Ft + Q_;
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
-  /**
-   * TODO: update the state by using Kalman Filter equations
-   */
+
     VectorXd z_pred = H_ * x_;
-    VectorXd y = z - z_pred;
+    VectorXd y = z - z_pred;    // error between prediction and new measurement
     MatrixXd Ht = H_.transpose();
     MatrixXd S = H_ * P_ * Ht + R_;
     MatrixXd Si = S.inverse();
@@ -53,9 +48,6 @@ void KalmanFilter::Update(const VectorXd &z) {
 }
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
-  /**
-   * TODO: update the state by using Extended Kalman Filter equations
-   */
 	
     double z_pred0, z_pred1, z_pred2;
 
@@ -70,19 +62,19 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
         std::cout << "..................Division by zero during UpdateEKF()..................\n";
     }
 
-    //if ( abs(x_(0)) < 0.001 )
-    //    x_(0) = 0.01;
-    z_pred0 = sqrt(Px2 + Py2);
-	z_pred1 = atan2(x_(1),x_(0));
-	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/(std::max(z_pred0,0.001));
+    // y = h(x) -> convert states to output (same as sensor measurement)
+    z_pred0 = sqrt(Px2 + Py2);  // rho: range
+	z_pred1 = atan2(x_(1),x_(0));   //phi: bearing
+	z_pred2 = (x_(0)*x_(2) + x_(1)*x_(3))/(std::max(z_pred0,0.001));    //rho_dot: range rate
 
     z_pred << z_pred0,
               z_pred1,
               z_pred2;
 
 
-    VectorXd y = z - z_pred;
+    VectorXd y = z - z_pred;    // error between prediction and new measurement
 
+    // trucnate bearing angle to [0;pi] or [0;-pi]
     while (y(1) > M_PI) {
         y(1) -= 2 * M_PI;
     }
