@@ -168,6 +168,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         ekf_.UpdateEKF(z_radar_);
     } 
     else {
+    /*
     //if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
         // update H and R
         std::cout << "Laser Update...\n";
@@ -179,6 +180,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         //ekf_.Q_ = Qf_;
         //ekf_.F_ = Ff_;
         ekf_.Update(z_laser_);
+    */
     }
 
     // print the output
