@@ -67,7 +67,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
 
     if (abs(x_(0)) < 0.001) {
-        std::cout << "Division by zero during UpdateEKF()\n";
+        std::cout << "..................Division by zero during UpdateEKF()..................\n";
     }
 
     //if ( abs(x_(0)) < 0.001 )
