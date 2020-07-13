@@ -11,4 +11,4 @@ The project is composed by the following:
 * Tools.cpp: It implements function such as CalculateRMSE() to evaluate filtering performance and CalculateJacobian() to linearize nonlinearities in the model.
 
 The figure below illustrates the performance of the techniques implemented.
-![](EKF-Sensor-Fusion/simulator_output.png)
+![](simulator_output.png)
