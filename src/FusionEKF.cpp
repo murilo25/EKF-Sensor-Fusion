@@ -164,7 +164,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         //ekf_.Init(xf_, Pf_, Ff_, H_radar_, R_radar_, Qf_);
         ekf_.H_ = H_radar_;
         ekf_.R_ = R_radar_;
-        //ekf_.UpdateEKF(z_radar_);
+        ekf_.UpdateEKF(z_radar_);
     } 
     else {
         // update H and R
@@ -174,7 +174,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         //ekf_.Init(xf_, Pf_, Ff_, H_laser_, R_laser_, Qf_);
         ekf_.H_ = H_laser_;
         ekf_.R_ = R_laser_;
-        ekf_.Update(z_laser_);
+        //ekf_.Update(z_laser_);
     }
 
     // print the output
