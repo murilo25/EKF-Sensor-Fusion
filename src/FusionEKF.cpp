@@ -157,7 +157,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
         // update H and R
         std::cout << "\nRadar update...\n";
-        H_radar_ = tools.CalculateJacobian(xf_);
+        H_radar_ = tools.CalculateJacobian(ekf_.x_);
         z_radar_ << measurement_pack.raw_measurements_[0],
                     measurement_pack.raw_measurements_[1],
                     measurement_pack.raw_measurements_[2];
